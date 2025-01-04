@@ -1,4 +1,4 @@
-https://school.programmers.co.kr/learn/courses/30/lessons/340198
+# https://school.programmers.co.kr/learn/courses/30/lessons/340198
 
 def solution(mats, park):
     # temp = [[0 for i in range(len(park[0]))] for j in range(len(park))]
