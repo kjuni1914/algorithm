@@ -12,7 +12,5 @@ for i in range(1, N+1):
             j+=1
             if dp[i]==0 or dp[i]>dp[i-j**2]+dp[j**2]:
                 dp[i]=dp[i-j**2]+dp[j**2]
-            else:
-                break
 
 print(dp[N])

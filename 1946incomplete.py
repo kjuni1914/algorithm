@@ -21,7 +21,6 @@ for _ in range(int(input())):
                     new_cand.append(i)
                     if i[0]<tmp[0] and i[1]<tmp[1]:
                         flag=True
-                        break
             candidate=new_cand
             if not flag:
                 candidate.append(tmp)
