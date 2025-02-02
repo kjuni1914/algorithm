@@ -8,14 +8,12 @@ N, M, H=map(int, input().split())
 if M==0:
     print(0)
 
-field={i+1:[] for i in range(N)}
+field={i+1:set() for i in range(N)}
 for i in range(M):
     h, st=map(int, input().split())
-    field[st].append([h, st+1])
-    field[st+1].append([h, st])
+    field[st].add((h, st+1))
+    field[st+1].add((h, st))
 
-for i in field:
-    field[i].sort()
 field=(field, 0, set())
 def play(field):
     res=[]
@@ -29,9 +27,10 @@ def play(field):
                     now=[j[0], j[1]]
                     break
         res.append((st, now[1]))
-
+        res.sort(key=lambda x:-abs(x[1]-x[0]))
     return res
 searched=set()
+
 def change(field):
     save=copy.deepcopy(field)
     load=lambda:copy.deepcopy(save)
@@ -46,16 +45,20 @@ def change(field):
     for i in state:
         for h in range(1, H+1):
             tmpfield, cnt, appended=load()
-            if i[0]<i[1] and [h, i[1]-1] not in tmpfield[i[1]] and (h, i[1]-1) not in appended:
-                tmpfield[i[1]].append([h, i[1]-1])
-                tmpfield[i[1]-1].append([h, i[1]])
-                appended.add((h, i[1]-1))
-                res.append((tmpfield, cnt+1, appended))
-            elif i[0]>i[1] and [h, i[1]+1] not in tmpfield[i[1]] and (h, i[1]+1) not in appended:
-                tmpfield[i[1]].append([h, i[1]+1])
-                tmpfield[i[1]+1].append([h, i[1]])
-                appended.add((h, i[1]+1))
-                res.append((tmpfield, cnt+1, appended))
+            if i[0]<i[1] and (h, i[1]-1) not in appended:
+                if (h, i[1]-1) not in tmpfield[i[1]]:
+                    tmpfield[i[1]].add((h, i[1]-1))
+                    tmpfield[i[1]-1].add((h, i[1]))
+                    appended.add((h, i[1]-1))
+                    res.append((tmpfield, cnt+1, appended))
+                else: continue
+            elif i[0]>i[1] and (h, i[1]+1) not in appended:
+                if (h, i[1]+1) not in tmpfield[i[1]]:
+                    tmpfield[i[1]].add((h, i[1]+1))
+                    tmpfield[i[1]+1].add((h, i[1]))
+                    appended.add((h, i[1]+1))
+                    res.append((tmpfield, cnt+1, appended))
+                else: continue
             else:
                 continue
     return res
