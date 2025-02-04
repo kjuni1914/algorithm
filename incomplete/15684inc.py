@@ -64,6 +64,7 @@ def change(field):
     return res
 
 start=deque([field])
+
 while start:
     for _ in range(len(start)):
         tmp=start.popleft()
