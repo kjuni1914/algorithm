@@ -12,8 +12,7 @@ for _ in range(int(input())):
             if j==0:
                 dp[i][j]=scores[i][j]
             elif j==1:
-                dp[i][j]=scores[i][j]+scores[i-1][j-1]
+                dp[i][j]=scores[i][j]+dp[i-1][j-1]
             else:
-                dp[i][j]=scores[i][j]+max(dp[i][j-2]+scores[i-1][j-1], dp[i-1][j-2])
-
+                dp[i][j]=scores[i][j]+max(dp[i-1][j-1], dp[i-1][j-2])
     print(max(dp[0][N-1], dp[1][N-1]))
