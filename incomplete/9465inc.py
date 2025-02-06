@@ -15,5 +15,5 @@ for _ in range(int(input())):
                 dp[i][j]=scores[i][j]+scores[i-1][j-1]
             else:
                 dp[i][j]=scores[i][j]+max(dp[i][j-2]+scores[i-1][j-1], dp[i-1][j-2])
-
+        print(dp)
     print(max(dp[0][N-1], dp[1][N-1]))
