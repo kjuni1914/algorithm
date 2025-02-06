@@ -11,8 +11,8 @@ for _ in range(M):
     for i in range(x1-1, x2):
         if i==x1-1:
             res=matrix[x1-1][y1-1:y2]
-            print(res)
         else:
             for j in range(y1-1, y2):
                 res[j-y1+1]+=matrix[i][j]
+                
     print(sum(res))
