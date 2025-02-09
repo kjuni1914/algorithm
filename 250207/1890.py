@@ -23,4 +23,5 @@ def sol():
                 dp[i][j+power]+=dp[i][j]
 
 sol()
-print(dp)
+
+print(dp[N-1][N-1])
