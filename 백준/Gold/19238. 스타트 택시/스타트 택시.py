@@ -11,7 +11,7 @@ for i in range(N):
     tmp=list(map(int, input().split()))
     for j in range(N):
         if tmp[j]==1:
-            tmp[j]="X"
+            tmp[j]=-1
     field.append(tmp)
 
 tmp=1
@@ -35,7 +35,7 @@ def bfs(i, j):
     while queue:
         nowx, nowy=queue.popleft()
         for dx, dy in zip([-1, 1, 0, 0], [0, 0, -1, 1]):
-            if 0<=nowx+dx<N and 0<=nowy+dy<N and visited[nowx+dx][nowy+dy]==-1 and isinstance(field[nowx+dx][nowy+dy], int):
+            if 0<=nowx+dx<N and 0<=nowy+dy<N and visited[nowx+dx][nowy+dy]==-1 and field[nowx+dx][nowy+dy]!=-1:
                 queue.append((nowx+dx, nowy+dy))
                 visited[nowx+dx][nowy+dy]=visited[nowx][nowy]+1
     return visited
