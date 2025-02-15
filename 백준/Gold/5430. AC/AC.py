@@ -3,10 +3,10 @@ import sys
 inpu=sys.stdin.readline
 
 for _ in range(int(input())):
-    cmd=input().strip()
+    cmd=input().rstrip()
     N=int(input())
-    nums=eval(input().strip())
-    if cmd.count("D")>len(nums):
+    nums=input().rstrip().strip("[]").split(",")
+    if cmd.count("D")>N:
         print("error")
         continue
     rev=False
@@ -21,7 +21,6 @@ for _ in range(int(input())):
             else:
                 st+=1
     else:
-        
         if rev:
             print("["+",".join([str(i) for i in reversed(nums[st:end])])+"]")
         else:
