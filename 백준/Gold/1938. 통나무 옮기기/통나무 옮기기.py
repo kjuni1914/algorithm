@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 
-inpu=sys.stdin.readline
+input=sys.stdin.readline
 
 N=int(input())
 
