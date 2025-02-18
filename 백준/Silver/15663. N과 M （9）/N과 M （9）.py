@@ -7,23 +7,18 @@ nums=list(map(int, input().split()))
 
 nums.sort()
 
-def backt(idx, path, visited=[False]*len(nums), res=None):
-    if res==None:
-        res=set()
+def backt(idx, path, visited=[False]*len(nums)):
     if len(path)==M:
-        tmp=" ".join(path)
-        if tmp not in res:
-            res.add(tmp)
-            print(tmp)
-    
+        print(" ".join(path))
+    prev=float('inf')
     for i in range(len(nums)):
-        if not visited[i]:
+        if not visited[i] and prev!=nums[i]:
             visited[i]=True
             path.append(str(nums[i]))
-            backt(i, path, visited, res)
+            backt(i, path, visited)
             visited[i]=False
             path.pop()
-    
-    return res
+            prev=nums[i]
+    return 
 
 backt(N+1, [])
