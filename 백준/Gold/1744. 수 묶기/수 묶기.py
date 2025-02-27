@@ -6,46 +6,31 @@ N=int(input())
 
 pos=[]
 neg=[]
-zero=[]
+res=0
+
 for i in range(N):
     num=int(input())
-    if num>0:
+    if num==1:
+        res+=1
+    elif num>0:
         heapq.heappush(pos, -num)
-    elif num<0:
+    else:
         heapq.heappush(neg, num)
+
+while pos:
+    num1=heapq.heappop(pos)
+    if pos:
+        num2=heapq.heappop(pos)
+        res+=num1*num2
     else:
-        zero.append(num)
-
-res=0
-flag=False
-prev=0
-
-while pos and pos[0]<-1:
-    if not flag:
-        prev=heapq.heappop(pos)
-        flag=True
-    else:
-        res+=prev*heapq.heappop(pos)
-        prev=0
-        flag=False
-
-if flag:
-    res-=prev
-    prev=0
-res-=sum(pos)
-flag=False
+        res-=num1
 
 while neg:
-    if not flag:
-        prev=heapq.heappop(neg)
-        flag=True
+    num1=heapq.heappop(neg)
+    if neg:
+        num2=heapq.heappop(neg)
+        res+=num1*num2
     else:
-        res+=prev*heapq.heappop(neg)
-        prev=0
-        flag=False
-        
-if zero:
-    print(res)
-else:
-    res+=prev
-    print(res)
+        res+=num1
+
+print(res)
