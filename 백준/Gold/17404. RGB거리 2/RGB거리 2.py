@@ -1,23 +1,23 @@
 import sys
 
 input=sys.stdin.readline
-
 N=int(input())
 
-houses=[]
+costs=[]
 for i in range(N):
-    houses.append(list(map(int, input().split())))
+    costs.append(list(map(int, input().split())))
 
-tmpres=[]
-for k in range(3):
-    for i in range(N):
-        if i==0:
-            dp=[float('inf') if k!=idx else houses[0][idx] for idx in range(3)]
+res=[]
+for i in range(3):
+    for j in range(N):
+        if j==0:
+            dp=[costs[j][idx] if idx==i else float('inf') for idx in range(3)]
         else:
             tmp=dp[:]
-            cost=houses[i]
-            for j in range(3):
-                dp[j]=min(tmp[(j-1)], tmp[j-2])+cost[j]
-    tmpres.append(min(dp[k-1], dp[k-2]))
+            for k in range(3):
+                tmp[k]=min(dp[k-1], dp[k-2])+costs[j][k]
+            dp=tmp
+        
+    res.append(min(dp[i-1], dp[i-2]))
 
-print(min(tmpres))
+print(min(res))
