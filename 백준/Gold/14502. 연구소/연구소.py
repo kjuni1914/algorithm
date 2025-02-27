@@ -43,11 +43,13 @@ for i in range(N*M-2):
         for k in range(j+1, N*M):
             if field[k//M][k%M]!=0:
                 continue
-            tmpfield=copy.deepcopy(field)
-            tmpfield[i//M][i%M]=1
-            tmpfield[j//M][j%M]=1
-            tmpfield[k//M][k%M]=1
-            resfield=bfs(deque(queue[:]), tmpfield)
+            field[i//M][i%M]=1
+            field[j//M][j%M]=1
+            field[k//M][k%M]=1
+            resfield=bfs(deque(queue[:]), field)
+            field[i//M][i%M]=0
+            field[j//M][j%M]=0
+            field[k//M][k%M]=0
             res=0
             for row in resfield:
                 res+=row.count(-1)
