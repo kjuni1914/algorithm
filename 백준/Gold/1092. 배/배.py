@@ -7,30 +7,22 @@ crain=list(map(int, input().split()))
 M=int(input())
 box=list(map(int, input().split()))
 
-crain.sort()
-box.sort()
+crain.sort(reverse=True)
+box.sort(reverse=True)
 
-weight=[[] for _ in range(N)]
-idx=0
-for i in box:
-    while crain[idx]<i:
-        idx+=1
-        if idx==N:
-            print(-1)
-            sys.exit()
+if box[0]>crain[0]:
+    print(-1)
+    sys.exit()
 
-    weight[idx].append(i)
-
-ans=0
 cnt=0
+while box:
+    cnt+=1
+    i=0
+    for c in crain:
+        if not box or c<box[-1]:
+            break
+        while i<M and c<box[i]:
+            i+=1
+        box.pop(i)
 
-while cnt<M:
-    ans+=1
-    for i in range(N-1, -1, -1):
-        while i>0 and not weight[i]:
-            i-=1
-        if weight[i]:
-            weight[i].pop()
-            cnt+=1
-
-print(ans)
+print(cnt)
