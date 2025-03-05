@@ -1,3 +1,3 @@
 import random
 
-print(random.randint(1, 2147483647))
+print(2147483647//2)
