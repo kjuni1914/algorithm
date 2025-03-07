@@ -20,10 +20,10 @@ for i in range(1, R+1):
         elif field[i-1][j-1][0]=="A":
             pfA[i][j]+=int(field[i-1][j-1][1:])
 
-revenue=[[0 for _ in range(C+1)] for _ in range(R+1)]
+dp=[[0 for _ in range(C+1)] for _ in range(R+1)]
 
 for i in range(1, R):
     for j in range(1, C):
-        revenue[i+1][j+1]=max(revenue[i+1][j]+pfB[i][j+1], revenue[i][j+1]+pfA[i+1][j], revenue[i][j]+pfB[i][j+1]+pfA[i+1][j])
+        dp[i+1][j+1]=max(dp[i+1][j]+pfB[i][j+1], dp[i][j+1]+pfA[i+1][j], dp[i][j]+pfB[i][j+1]+pfA[i+1][j])
 
-print(revenue[R][C])
+print(dp[R][C])
