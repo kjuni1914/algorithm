@@ -2,7 +2,7 @@ import sys
 
 input=sys.stdin.readline
 N=int(input())
-dp=[1, 1, 1, 1, 1]# 안먹 0 1 2 3
+dp=[1, 1, 1, 1, 1]
 
 for _ in range(1, N):
     dp=[sum(dp[1:])%1000000007, 
