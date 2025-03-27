@@ -6,7 +6,7 @@ N, M=map(int, input().split())
 field=[]
 
 for _ in range(N):
-    field.append(list(map(int, (" ".join(input().rstrip())).split())))
+    field.append(list(map(int, input().rstrip())))
 
 def bfs():
     queue=deque([(0, 0)])
